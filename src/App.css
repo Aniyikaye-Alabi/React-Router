@@ -45,3 +45,7 @@ p {
 li {
   list-style: none;
 }
+
+.selected {
+  color: coral;
+}

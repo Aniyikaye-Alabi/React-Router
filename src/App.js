@@ -1,56 +1,27 @@
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Home from './components/Home';
 import About from './components/About';
 import Users from './components/Users';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
+import EachUser from './components/EachUser';
+import Login from './components/Login';
+import NavLinks from './components/NavLinks';
+//import WithRouter from './components/UserInfo';
 import './App.css';
+import React from 'react';
 
-//const user_ids = ['userId1', 'userId2', 'userId3', 'userId4', 'userId5', 'userId6', 'userId7'];
+function App(props) {
 
-function App() {
-    
-  const style = {
-    textDecoration: 'none'
-  }
+  //console.log(props);
   return (
       <Router>
             <div className="App">
-                <ul>
-                    <li>
-                        <Link style={style} to="/">Home</Link>
-                    </li>
-
-                    <li>
-                        <Link style={style} to="/about">About Us</Link>
-                    </li>
-
-                    <li>
-                        <Link style={style} to="/users">Users</Link>
-                    </li>
-                    {/* {
-                        user_ids.map((user) => 
-                            <li>
-                                <Link style={style} to={'/users/' + user}>{user}</Link>
-                            </li>
-                        )
-                    } */}
-                </ul>
-
-
-
+                <NavLinks />
                 <Switch>
-                    <Route exact path="/">
-                        <Home />
-                    </Route>
-                    <Route path="/about">
-                        <About />
-                    </Route>
-                    <Route exact path="/users">
-                        <Users />
-                    </Route>
-                    <Route path="/users/:type">
-                        <Users />
-                    </Route>
+                    <Route exact path="/" component={Home} />
+                    <Route path="/about" component={About} />
+                    <Route exact path="/users" component={Users} />
+                    <Route path="/users/:type" component={EachUser} />
+                    <Route path="/login" component={Login} />
                 </Switch>
             </div>
         </Router>

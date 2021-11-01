@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom';
 
 const user_ids = ['userId1', 'userId2', 'userId3', 'userId4', 'userId5', 'userId6', 'userId7'];
 
-const Users = () => {
+const Users = ({match, history, location}) => {
+    console.log(match);
     const { type } = useParams();
+    console.log(type);
 
     const style = {
         textDecoration: 'none'
@@ -26,23 +28,17 @@ const Users = () => {
             <ul>
                 {
                     user_ids.map((user) => 
-                        <li>
-                            <Link style={style} to={'/users/' + user}>{user}</Link>
+                        <li key={user}>
+                            <Link key={user} style={style} to={`${match.url}/${user}`}>{user}</Link>
+                            {/* <button onClick={ () => history.push(`/users/${user}`) }>{user}</button> */}
+                            
                         </li>
                     )
                 }
             </ul>
 
-            <p>
-                {
-                    
-                    user_ids.map(id => 
-                    <h3>
-                        {type===id && `ID for this user is ${id}`}
-                    </h3>)
+            
 
-                }
-            </p>
         </div>
     )
 }
